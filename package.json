@@ -24,7 +24,7 @@
   "dependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
-    "@marcostmunhoz/fastfood-libs": "^0.0.9",
+    "@marcostmunhoz/fastfood-libs": "^0.0.10",
     "@nestjs/axios": "^3.1.2",
     "@nestjs/common": "^10.4.9",
     "@nestjs/config": "^3.3.0",
