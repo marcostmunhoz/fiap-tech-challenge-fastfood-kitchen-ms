@@ -1,1 +1,1 @@
-export const ProductRepositoryToken = 'ProductRepositoryToken';
+export const ProductRepositoryToken = Symbol('ProductRepositoryToken');
