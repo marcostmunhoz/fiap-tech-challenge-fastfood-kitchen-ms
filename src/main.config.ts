@@ -1,6 +1,13 @@
+import {
+  DomainExceptionFilter,
+  TransformationPipe,
+  ValidationPipe,
+} from '@marcostmunhoz/fastfood-libs';
 import { INestApplication, RequestMethod } from '@nestjs/common';
 
 export const applyGlobalAppConfig = (app: INestApplication) => {
+  app.useGlobalPipes(new ValidationPipe(), new TransformationPipe());
+  app.useGlobalFilters(new DomainExceptionFilter());
   app.setGlobalPrefix('api/v1', {
     exclude: [
       { path: 'api/docs', method: RequestMethod.GET },

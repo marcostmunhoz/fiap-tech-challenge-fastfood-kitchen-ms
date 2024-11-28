@@ -18,7 +18,8 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "class-transformer": ["./node_modules/class-transformer"]
     }
   }
 }
