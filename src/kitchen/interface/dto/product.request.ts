@@ -42,6 +42,10 @@ export class ProductRequest {
   @IsString()
   @Length(2, 255)
   @TransformPrimitiveToValueObject(ProductDescriptionValueObject)
+  @ApiProperty({
+    example: 'Product Description',
+    type: String,
+  })
   description: ProductDescriptionValueObject;
 
   @IsNotEmpty()

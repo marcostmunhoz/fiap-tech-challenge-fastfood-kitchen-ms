@@ -8,7 +8,7 @@ import {
 } from '@marcostmunhoz/fastfood-libs';
 import { Controller, Delete, HttpCode, Inject, Param } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { ProductParam } from '../dto/product.param';
+import { ProductIdParam } from '../dto/product.param';
 
 @ApiTags('Products')
 @Controller('products')
@@ -26,7 +26,7 @@ export class DeleteProductController {
   @DefaultUnprocessableEntityResponse()
   @DefaultInternalServerErrorResponse()
   @DefaultNotFoundResponse()
-  async execute(@Param() param: ProductParam): Promise<void> {
+  async execute(@Param() param: ProductIdParam): Promise<void> {
     await this.useCase.execute(param);
   }
 }

@@ -19,7 +19,10 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@/*": ["src/*"],
-      "class-transformer": ["./node_modules/class-transformer"]
+      "class-transformer": ["./node_modules/class-transformer"],
+      "class-validator": ["./node_modules/class-validator"],
+      "axios": ["./node_modules/axios"],
+      "@nestjs/axios": ["./node_modules/@nestjs/axios"]
     }
   }
 }

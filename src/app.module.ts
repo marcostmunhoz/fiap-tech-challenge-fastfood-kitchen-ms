@@ -2,6 +2,7 @@ import {
   FastfoodLibsModule,
   TypeOrmModuleOptionsToken,
 } from '@marcostmunhoz/fastfood-libs';
+import { FastfoodLibsModuleOptions } from '@marcostmunhoz/fastfood-libs/lib/fastfood-libs-options.type';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { HealthModule } from './health/health.module';
@@ -13,14 +14,16 @@ import { KitchenModule } from './kitchen/kitchen.module';
   imports: [
     FastfoodLibsModule.forRootAsync({
       imports: [],
-      useFactory: () => ({
-        database: {
-          type: 'mysql',
-          migrations,
-          migrationsTransactionMode: 'none',
-          runMigrationsOnStartup: true,
-        },
-      }),
+      useFactory: () => {
+        return {
+          database: {
+            migrations,
+            migrationsTransactionMode: 'none',
+            runMigrationsOnStartup: false,
+            synchronize: true,
+          },
+        } as FastfoodLibsModuleOptions;
+      },
     }),
     TypeOrmModule.forRootAsync({
       useFactory: (options: TypeOrmModuleOptions) => {

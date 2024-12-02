@@ -3,10 +3,10 @@ import {
   DefaultBadRequestResponse,
   DefaultInternalServerErrorResponse,
   DefaultUnprocessableEntityResponse,
+  mapObjectToResponse,
 } from '@marcostmunhoz/fastfood-libs';
 import { Body, Controller, HttpCode, Inject, Post } from '@nestjs/common';
 import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
-import { plainToClass } from 'class-transformer';
 import { ProductRequest } from '../dto/product.request';
 import { ProductResponse } from '../dto/product.response';
 
@@ -27,10 +27,6 @@ export class CreateProductController {
   async execute(@Body() request: ProductRequest): Promise<ProductResponse> {
     const result = await this.useCase.execute(request);
 
-    return plainToClass(ProductResponse, result, {
-      excludeExtraneousValues: true,
-      exposeUnsetFields: true,
-    });
-    // return mapObjectToResponse(ProductResponse, result);
+    return mapObjectToResponse(ProductResponse, result);
   }
 }

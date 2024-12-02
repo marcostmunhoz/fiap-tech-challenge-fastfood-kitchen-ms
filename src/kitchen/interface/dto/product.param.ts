@@ -1,12 +1,21 @@
 import {
   EntityIdValueObject,
+  ProductCodeValueObject,
+  TransformPrimitiveToValueObject,
   TransformStringToEntityId,
 } from '@marcostmunhoz/fastfood-libs';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
-export class ProductParam {
-  @IsNotEmpty()
+export class ProductIdParam {
+  @IsOptional()
   @IsString()
   @TransformStringToEntityId()
   id: EntityIdValueObject;
+}
+
+export class ProductCodeParam {
+  @IsOptional()
+  @IsString()
+  @TransformPrimitiveToValueObject(ProductCodeValueObject)
+  code: ProductCodeValueObject;
 }

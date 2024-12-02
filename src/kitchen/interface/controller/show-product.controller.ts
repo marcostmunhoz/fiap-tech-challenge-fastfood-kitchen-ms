@@ -6,8 +6,8 @@ import {
   UuidParam,
 } from '@marcostmunhoz/fastfood-libs';
 import { Controller, Get, HttpCode, Inject, Param } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { ProductParam } from '../dto/product.param';
+import { ApiOkResponse, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ProductCodeParam, ProductIdParam } from '../dto/product.param';
 import { ProductResponse } from '../dto/product.response';
 
 @ApiTags('Products')
@@ -24,7 +24,23 @@ export class ShowProductController {
   @ApiOkResponse({ type: ProductResponse })
   @DefaultInternalServerErrorResponse()
   @DefaultNotFoundResponse()
-  async execute(@Param() param: ProductParam): Promise<ProductResponse> {
+  async findById(@Param() param: ProductIdParam): Promise<ProductResponse> {
+    const result = await this.useCase.execute(param);
+
+    return mapObjectToResponse(ProductResponse, result);
+  }
+
+  @Get('code/:code')
+  @HttpCode(200)
+  @ApiParam({
+    name: 'code',
+    type: String,
+    example: 'PRD-001',
+  })
+  @ApiOkResponse({ type: ProductResponse })
+  @DefaultInternalServerErrorResponse()
+  @DefaultNotFoundResponse()
+  async findByCode(@Param() param: ProductCodeParam): Promise<ProductResponse> {
     const result = await this.useCase.execute(param);
 
     return mapObjectToResponse(ProductResponse, result);

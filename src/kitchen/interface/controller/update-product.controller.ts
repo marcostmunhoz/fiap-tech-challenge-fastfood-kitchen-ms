@@ -7,7 +7,7 @@ import {
 } from '@marcostmunhoz/fastfood-libs';
 import { Body, Controller, HttpCode, Inject, Param, Put } from '@nestjs/common';
 import { ApiNoContentResponse, ApiTags } from '@nestjs/swagger';
-import { ProductParam } from '../dto/product.param';
+import { ProductIdParam } from '../dto/product.param';
 import { ProductRequest } from '../dto/product.request';
 
 @ApiTags('Products')
@@ -26,7 +26,7 @@ export class UpdateProductController {
   @DefaultUnprocessableEntityResponse()
   @DefaultInternalServerErrorResponse()
   async execute(
-    @Param() param: ProductParam,
+    @Param() param: ProductIdParam,
     @Body() request: ProductRequest,
   ): Promise<void> {
     await this.useCase.execute({ id: param.id, data: request });

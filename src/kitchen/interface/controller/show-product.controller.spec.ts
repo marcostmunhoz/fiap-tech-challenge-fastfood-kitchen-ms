@@ -27,7 +27,7 @@ describe('ShowProductController', () => {
     controller = module.get<ShowProductController>(ShowProductController);
   });
 
-  describe('execute', () => {
+  describe('findById', () => {
     it('should return an existing product', async () => {
       // Arrange
       const props = getCompleteProductData();
@@ -36,11 +36,38 @@ describe('ShowProductController', () => {
       useCaseMock.execute.mockResolvedValue(output);
 
       // Act
-      const response = await controller.execute({ id });
+      const response = await controller.findById({ id });
 
       // Assert
       expect(useCaseMock.execute).toHaveBeenCalledTimes(1);
       expect(useCaseMock.execute).toHaveBeenCalledWith({ id });
+      expect(response).toEqual({
+        id: output.id.value,
+        code: output.code.value,
+        name: output.name.value,
+        description: output.description.value,
+        price: output.price.valueAsFloat,
+        category: output.category,
+        createdAt: output.createdAt,
+        updatedAt: output.updatedAt,
+      });
+    });
+  });
+
+  describe('findByCode', () => {
+    it('should return an existing product', async () => {
+      // Arrange
+      const props = getCompleteProductData();
+      const { code } = props;
+      const output: Output = props;
+      useCaseMock.execute.mockResolvedValue(output);
+
+      // Act
+      const response = await controller.findByCode({ code });
+
+      // Assert
+      expect(useCaseMock.execute).toHaveBeenCalledTimes(1);
+      expect(useCaseMock.execute).toHaveBeenCalledWith({ code });
       expect(response).toEqual({
         id: output.id.value,
         code: output.code.value,
