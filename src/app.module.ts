@@ -20,7 +20,6 @@ import { KitchenModule } from './kitchen/kitchen.module';
             migrations,
             migrationsTransactionMode: 'none',
             runMigrationsOnStartup: false,
-            synchronize: true,
           },
         } as FastfoodLibsModuleOptions;
       },
