@@ -8,4 +8,12 @@ module.exports = {
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
   testMatch: ['<rootDir>/**/*.spec.ts'],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/app.module.ts',
+    '<rootDir>/main.config.ts',
+    '<rootDir>/main.ts',
+    '<rootDir>/health',
+    '<rootDir>/kitchen/kitchen.module.ts',
+    '<rootDir>/kitchen/infrastructure/migrations',
+  ],
 };
